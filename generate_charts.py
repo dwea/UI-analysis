@@ -248,6 +248,7 @@ def chart_heatmap():
     sns.heatmap(pivot, ax=ax, cmap="YlOrRd", linewidths=0.4, linecolor="#EEEEEE",
                 annot=True, fmt=".0f", annot_kws={"size": 8},
                 cbar_kws={"label": "Total Interactions", "shrink": 0.7})
+    ax.grid(False)
     ax.set_title("Interaction Heatmap — UI Element × Phase", pad=12)
     ax.set_xlabel("Phase")
     ax.set_ylabel("UI Element")
@@ -403,6 +404,7 @@ def chart_transition_matrix():
     sns.heatmap(pivot_norm, ax=ax, cmap="Blues", annot=True, fmt=".2f",
                 linewidths=0.5, linecolor="#EEEEEE",
                 cbar_kws={"label": "Transition Probability"})
+    ax.grid(False)
     ax.set_title("Phase Transition Probability Matrix")
     ax.set_xlabel("To Phase")
     ax.set_ylabel("From Phase")

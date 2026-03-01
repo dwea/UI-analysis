@@ -1,0 +1,71 @@
+{
+  "company": "NovaPulse Medical Systems",
+  "product": "PulseNav Workflow Suite",
+  "n_procedures": 40,
+  "n_events": 11339,
+  "n_operators": 8,
+  "phases": [
+    {
+      "key": "A",
+      "label": "Phase A"
+    },
+    {
+      "key": "B",
+      "label": "Phase B"
+    },
+    {
+      "key": "C",
+      "label": "Phase C"
+    },
+    {
+      "key": "D",
+      "label": "Phase D"
+    },
+    {
+      "key": "E",
+      "label": "Phase E"
+    },
+    {
+      "key": "F",
+      "label": "Phase F"
+    }
+  ],
+  "operators": [
+    {
+      "id": "OP_001",
+      "experience": "expert"
+    },
+    {
+      "id": "OP_002",
+      "experience": "expert"
+    },
+    {
+      "id": "OP_003",
+      "experience": "senior"
+    },
+    {
+      "id": "OP_004",
+      "experience": "senior"
+    },
+    {
+      "id": "OP_005",
+      "experience": "mid"
+    },
+    {
+      "id": "OP_006",
+      "experience": "mid"
+    },
+    {
+      "id": "OP_007",
+      "experience": "novice"
+    },
+    {
+      "id": "OP_008",
+      "experience": "novice"
+    }
+  ],
+  "date_range": [
+    "2024-01-15 10:59:49.576715828",
+    "2024-04-06 07:40:23.810700301"
+  ]
+}

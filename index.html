@@ -1854,8 +1854,8 @@
 
     const { svg: s, W, H } = getSVG(370);
     const defs = s.append('defs');
-    addMarker(defs, 'arr-fwd',  '#3B5BDB', 7);
-    addMarker(defs, 'arr-back', '#C73030', 6);
+    addMarker(defs, 'arr-fwd',  '#3B5BDB', 4);
+    addMarker(defs, 'arr-back', '#C73030', 3.5);
 
     const maxEv = d3.max(PH_NODES, n => n.events);
     const rSc = d3.scaleLinear().domain([0, maxEv]).range([28, 46]);
@@ -1976,14 +1976,14 @@
 
     // Defs — one arrow marker per screen
     const defs = s.append('defs');
-    screens.forEach((sc, i) => addMarker(defs, `ae-${i}`, scColor(sc), 7));
+    screens.forEach((sc, i) => addMarker(defs, `ae-${i}`, scColor(sc), 4));
     const mkr = sc => `url(#ae-${screens.indexOf(sc)})`;
 
     // Force simulation
     sim = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).id(d => d.id)
         .distance(d => 90 + swSc(d.freq) * 8).strength(0.4))
-      .force('charge', d3.forceManyBody().strength(-380))
+      .force('charge', d3.forceManyBody().strength(-700))
       .force('center',  d3.forceCenter(W / 2, H / 2 - 10))
       .force('collide', d3.forceCollide(d => rSc(d.count) + 14));
 

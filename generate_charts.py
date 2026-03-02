@@ -83,13 +83,16 @@ def chart_dotted():
         starts = df.groupby("case_id")["timestamp"].min()
         x = [(sub.iloc[j]["timestamp"] - starts[sub.iloc[j]["case_id"]]).total_seconds() / 60
              for j in range(len(sub))]
-        ax.scatter(x, y, c=PHASE_COLORS[phase], s=8, alpha=0.55, label=phase, linewidths=0)
+        ax.scatter(x, y, c=PHASE_COLORS[phase], s=8, alpha=0.55, label=phase, linewidths=0, zorder=3)
 
     ax.set_xlabel("Time from Procedure Start (minutes)")
     ax.set_ylabel("Procedure (case)")
     ax.set_title("Dotted Chart — All Interactions Across All Procedures")
     ax.set_yticks(range(len(cases)))
     ax.set_yticklabels([f"#{i+1}" for i in range(len(cases))], fontsize=7)
+    ax.yaxis.grid(False)
+    ax.xaxis.grid(True, color="#E0E0E0", linewidth=0.5, zorder=0)
+    ax.set_axisbelow(True)
     ax.legend(title="Phase", loc="upper right", markerscale=3, fontsize=9)
     fig.tight_layout()
     fig.savefig("charts/dotted_chart.png", dpi=150, bbox_inches="tight")

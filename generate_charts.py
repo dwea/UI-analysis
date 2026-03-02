@@ -83,7 +83,7 @@ def chart_dotted():
         starts = df.groupby("case_id")["timestamp"].min()
         x = [(sub.iloc[j]["timestamp"] - starts[sub.iloc[j]["case_id"]]).total_seconds() / 60
              for j in range(len(sub))]
-        ax.scatter(x, y, c=PHASE_COLORS[phase], s=4, alpha=0.55, label=phase, linewidths=0)
+        ax.scatter(x, y, c=PHASE_COLORS[phase], s=8, alpha=0.55, label=phase, linewidths=0)
 
     ax.set_xlabel("Time from Procedure Start (minutes)")
     ax.set_ylabel("Procedure (case)")

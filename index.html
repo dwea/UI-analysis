@@ -631,6 +631,88 @@
     font-size: 12px;
     color: var(--muted);
   }
+
+  /* ── Analytical Lenses Page ──────────────────────────────────────────── */
+  .lens-section-1 { --lens-color: #3B5BDB; --lens-bg: #EEF2FF; }
+  .lens-section-2 { --lens-color: #DC2626; --lens-bg: #FEF2F2; }
+  .lens-section-3 { --lens-color: #0D9488; --lens-bg: #ECFDF5; }
+  .lens-section-4 { --lens-color: #7C3AED; --lens-bg: #F5F3FF; }
+  .lens-section-5 { --lens-color: #475569; --lens-bg: #F8FAFC; }
+
+  .lens-section { margin-bottom: 40px; }
+
+  .lens-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 16px; padding-bottom: 14px;
+    border-bottom: 2.5px solid var(--lens-color);
+  }
+  .lens-num {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--lens-color); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 800; flex-shrink: 0;
+  }
+  .lens-meta { flex: 1; }
+  .lens-name  { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; color: var(--lens-color); line-height: 1.2; }
+  .lens-question { font-size: 13px; color: var(--muted); margin-top: 4px; font-style: italic; }
+
+  .lens-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    gap: 14px;
+  }
+  .lens-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); overflow: hidden; cursor: pointer;
+    transition: box-shadow 0.18s, transform 0.18s, border-color 0.18s;
+    text-decoration: none; color: inherit; display: block;
+    box-shadow: var(--shadow-sm);
+  }
+  .lens-card:hover {
+    box-shadow: var(--shadow-lg); transform: translateY(-2px);
+    border-color: var(--lens-color);
+  }
+  .lens-card-thumb {
+    width: 100%; height: 80px; object-fit: cover; object-position: top center;
+    display: block; background: var(--bg); border-bottom: 1px solid var(--border);
+  }
+  .lens-card-body { padding: 14px 16px; }
+  .lens-card-type {
+    font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--lens-color); background: var(--lens-bg);
+    display: inline-block; padding: 2px 7px; border-radius: 4px; margin-bottom: 7px;
+  }
+  .lens-card-name  { font-size: 13.5px; font-weight: 700; margin-bottom: 5px; line-height: 1.3; }
+  .lens-card-desc  { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  .lens-card-link  {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 12px; font-weight: 600; color: var(--lens-color); margin-top: 10px;
+  }
+  .lens-info-card {
+    background: var(--surface-2); border: 1.5px dashed var(--border);
+    border-radius: var(--radius-lg); display: flex; align-items: center;
+    justify-content: center; min-height: 160px; padding: 20px;
+    cursor: default; text-align: center; color: var(--muted);
+  }
+  .lens-info-card-inner svg { display: block; margin: 0 auto 8px; opacity: 0.35; }
+  .lens-info-card-inner .title { font-size: 12.5px; font-weight: 700; margin-bottom: 5px; color: var(--text); }
+  .lens-info-card-inner .desc  { font-size: 12px; line-height: 1.55; max-width: 200px; }
+  .lens-future-card {
+    background: var(--surface-2); border: 2px dashed #CBD5E1; border-radius: var(--radius-lg); padding: 26px 30px;
+  }
+  .lens-future-badge {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 11px;
+    font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+    color: var(--lens-color); background: var(--lens-bg); border: 1px solid #CBD5E1;
+    padding: 4px 11px; border-radius: 20px; margin-bottom: 14px;
+  }
+  .lens-future-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+  .lens-future-card p  { font-size: 13.5px; color: var(--muted); line-height: 1.7; max-width: 700px; }
+  .lens-future-needs   { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .lens-future-need {
+    font-size: 12px; font-weight: 600; color: var(--lens-color);
+    background: var(--lens-bg); border: 1px solid #CBD5E1; padding: 4px 11px; border-radius: 20px;
+  }
 </style>
 </head>
 <body>
@@ -730,6 +812,13 @@
       Overview
     </button>
 
+    <button class="tab-btn" data-tab="lenses" onclick="switchTab('lenses')">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M4 6h16M4 12h10M4 18h7"/>
+      </svg>
+      By Question
+    </button>
+
     <button class="tab-btn" data-tab="dotted" onclick="switchTab('dotted')">
       <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
         <circle cx="4" cy="14" r="2" fill="currentColor" stroke="none"/>
@@ -801,6 +890,191 @@
 
 <!-- ── Main Content ───────────────────────────────────────────────────────── -->
 <div class="main">
+
+  <!-- ══════════════════════════════════════════ ANALYTICAL LENSES ════ -->
+  <div class="panel" id="panel-lenses">
+
+    <div class="panel-head">
+      <div class="panel-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+          <path d="M4 6h16M4 12h10M4 18h7"/>
+        </svg>
+      </div>
+      <div class="panel-head-text">
+        <div class="viz-type-badge">Analytical Framework</div>
+        <h2>Five Analytical Lenses</h2>
+        <p>
+          Rather than browsing by chart type, this view groups the visualizations by the question they answer.
+          Each lens represents a distinct mode of analysis. Start with the question your team cares most about,
+          then follow the link to explore the chart that serves it.
+        </p>
+      </div>
+    </div>
+
+    <!-- Lens 1 -->
+    <div class="lens-section lens-section-1">
+      <div class="lens-header">
+        <div class="lens-num">1</div>
+        <div class="lens-meta">
+          <div class="lens-name">Workflow Conformance</div>
+          <div class="lens-question">"Are users following the paths we designed — and where do they diverge?"</div>
+        </div>
+      </div>
+      <div class="lens-cards">
+        <a class="lens-card" onclick="switchTab('dfg')">
+          <img class="lens-card-thumb" src="charts/dfg.png" alt="DFG" />
+          <div class="lens-card-body">
+            <span class="lens-card-type">Process Model</span>
+            <div class="lens-card-name">Directly-Follows Graph</div>
+            <div class="lens-card-desc">Node-arc graph showing the dominant workflow path, rework loops, and how often operators re-enter earlier phases.</div>
+            <div class="lens-card-link">Explore <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M14 7l5 5-5 5"/></svg></div>
+          </div>
+        </a>
+        <a class="lens-card" onclick="switchTab('sankey')">
+          <img class="lens-card-thumb" src="charts/sankey.png" alt="Sankey" />
+          <div class="lens-card-body">
+            <span class="lens-card-type">Flow Diagram</span>
+            <div class="lens-card-name">Sankey Flow Diagram</div>
+            <div class="lens-card-desc">Proportional bands revealing where interaction volume concentrates — which phases are effort-heavy versus lightweight transitions.</div>
+            <div class="lens-card-link">Explore <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M14 7l5 5-5 5"/></svg></div>
+          </div>
+        </a>
+        <a class="lens-card" onclick="switchTab('transition')">
+          <img class="lens-card-thumb" src="charts/transition_matrix.png" alt="Transition Matrix" />
+          <div class="lens-card-body">
+            <span class="lens-card-type">Stochastic Model</span>
+            <div class="lens-card-name">Transition Matrix</div>
+            <div class="lens-card-desc">Markov-style probability matrix quantifying how reliably one phase follows another, and precisely where deviations occur.</div>
+            <div class="lens-card-link">Explore <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M14 7l5 5-5 5"/></svg></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Lens 2 -->
+    <div class="lens-section lens-section-2">
+      <div class="lens-header">
+        <div class="lens-num">2</div>
+        <div class="lens-meta">
+          <div class="lens-name">Friction Surface</div>
+          <div class="lens-question">"Where is the UI working against the user?"</div>
+        </div>
+      </div>
+      <div class="lens-cards">
+        <a class="lens-card" onclick="switchTab('dwell')">
+          <img class="lens-card-thumb" src="charts/dwell_distribution.png" alt="Dwell Time" />
+          <div class="lens-card-body">
+            <span class="lens-card-type">Distribution</span>
+            <div class="lens-card-name">Dwell Time Distribution</div>
+            <div class="lens-card-desc">Ridge density curves showing per-interaction hesitation by phase. Heavy right tails are the primary friction signal.</div>
+            <div class="lens-card-link">Explore <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M14 7l5 5-5 5"/></svg></div>
+          </div>
+        </a>
+        <a class="lens-card" onclick="switchTab('heatmap')">
+          <img class="lens-card-thumb" src="charts/heatmap.png" alt="Heatmap" />
+          <div class="lens-card-body">
+            <span class="lens-card-type">Cross-tabulation</span>
+            <div class="lens-card-name">Interaction Heatmap</div>
+            <div class="lens-card-desc">Element-by-phase intensity matrix pinpointing which controls dominate each phase and flagging unexpected usage patterns.</div>
+            <div class="lens-card-link">Explore <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M14 7l5 5-5 5"/></svg></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Lens 3 -->
+    <div class="lens-section lens-section-3">
+      <div class="lens-header">
+        <div class="lens-num">3</div>
+        <div class="lens-meta">
+          <div class="lens-name">Temporal Profiling</div>
+          <div class="lens-question">"What does time reveal about behaviour and performance?"</div>
+        </div>
+      </div>
+      <div class="lens-cards">
+        <a class="lens-card" onclick="switchTab('dotted')">
+          <img class="lens-card-thumb" src="charts/dotted_chart.png" alt="Dotted Chart" />
+          <div class="lens-card-body">
+            <span class="lens-card-type">Temporal Scatter</span>
+            <div class="lens-card-name">Dotted Chart</div>
+            <div class="lens-card-desc">Every interaction as a dot in time — the complete temporal fingerprint of the dataset across all procedures simultaneously.</div>
+            <div class="lens-card-link">Explore <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M14 7l5 5-5 5"/></svg></div>
+          </div>
+        </a>
+        <a class="lens-card" onclick="switchTab('timeline')">
+          <img class="lens-card-thumb" src="charts/timeline.png" alt="Timeline" />
+          <div class="lens-card-body">
+            <span class="lens-card-type">Gantt Chart</span>
+            <div class="lens-card-name">Phase-Aligned Timeline</div>
+            <div class="lens-card-desc">All procedures aligned to a common origin, sorted by total duration. Exposes outlier cases and bottleneck phases at a glance.</div>
+            <div class="lens-card-link">Explore <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M14 7l5 5-5 5"/></svg></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Lens 4 -->
+    <div class="lens-section lens-section-4">
+      <div class="lens-header">
+        <div class="lens-num">4</div>
+        <div class="lens-meta">
+          <div class="lens-name">Cohort Comparison</div>
+          <div class="lens-question">"How does behaviour differ across meaningful groups?"</div>
+        </div>
+      </div>
+      <div class="lens-cards">
+        <a class="lens-card" onclick="switchTab('variants')">
+          <img class="lens-card-thumb" src="charts/variants.png" alt="Variant Comparison" />
+          <div class="lens-card-body">
+            <span class="lens-card-type">Comparative Distribution</span>
+            <div class="lens-card-name">Variant Comparison</div>
+            <div class="lens-card-desc">Violin + strip plots of phase duration broken out by operator experience group — the human factors lens.</div>
+            <div class="lens-card-link">Explore <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M14 7l5 5-5 5"/></svg></div>
+          </div>
+        </a>
+        <div class="lens-card lens-info-card">
+          <div class="lens-info-card-inner">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+            <div class="title">Any chart can become a cohort lens</div>
+            <div class="desc">Filter or facet any visualization by operator, role, software version, or case type.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lens 5 -->
+    <div class="lens-section lens-section-5">
+      <div class="lens-header">
+        <div class="lens-num">5</div>
+        <div class="lens-meta">
+          <div class="lens-name">Outcome Signal</div>
+          <div class="lens-question">"Can UI interaction patterns tell us anything about what happened in the procedure?"</div>
+        </div>
+      </div>
+      <div class="lens-future-card">
+        <div class="lens-future-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Requires Additional Data Capture
+        </div>
+        <h4>The long-term analytical prize</h4>
+        <p>
+          This lens connects UI behaviour patterns to procedure outcome markers — re-attempts, extended phase durations, alert events, or clinical result flags.
+          It is what separates a UX exercise from a clinically meaningful research program. None of the existing charts reflect this yet because it requires
+          outcome data to be captured alongside interaction events. Once that linkage exists, correlation analysis and pattern-to-outcome models
+          can be layered on top of any of the four lenses above.
+        </p>
+        <div class="lens-future-needs">
+          <span class="lens-future-need">Case outcome markers</span>
+          <span class="lens-future-need">Re-attempt flags</span>
+          <span class="lens-future-need">Alert event timestamps</span>
+          <span class="lens-future-need">Clinical result metadata</span>
+          <span class="lens-future-need">Linked case IDs across UI &amp; device logs</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 
   <!-- ═══════════════════════════════════════════════════════ OVERVIEW ════ -->
   <div class="panel active" id="panel-overview">
